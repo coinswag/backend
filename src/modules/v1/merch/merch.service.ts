@@ -19,6 +19,7 @@ export class MerchService {
     );
     const merchData = {
       ...createMerchDto,
+      price: Number(createMerchDto.price),
       colors: createMerchDto.colors.trim().split(','),
       variants,
     };

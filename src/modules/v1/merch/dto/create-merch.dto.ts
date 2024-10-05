@@ -20,7 +20,7 @@ class VariantDto {
 export class CreateMerchDto {
   @IsString()
   shopId: string;
-  
+
   @IsString()
   name: string;
 
@@ -29,6 +29,9 @@ export class CreateMerchDto {
 
   @IsString()
   colors: string;
+
+  @IsString()
+  price: string;
 
   @IsString()
   merchandiseType: string;

@@ -27,6 +27,12 @@ export interface IEnvironment {
   MORALIS: {
     API_KEY: string;
   };
+  CLOUDINARY: {
+    CLOUD_NAME: string;
+    API_KEY: string;
+    API_SECRET: string;
+    CLOUDINARY_URL: string;
+  }
 }
 
 export const ENVIRONMENT: IEnvironment = {
@@ -54,5 +60,11 @@ export const ENVIRONMENT: IEnvironment = {
   },
   MORALIS: {
     API_KEY: process.env.MORALIS_API_KEY,
+  },
+  CLOUDINARY: {
+    CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+    API_KEY: process.env.CLOUDINARY_API_KEY,
+    API_SECRET: process.env.CLOUDINARY_API_SECRET,
+    CLOUDINARY_URL: process.env.CLOUDINARY_URL,
   }
 };

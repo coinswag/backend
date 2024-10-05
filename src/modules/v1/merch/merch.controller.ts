@@ -26,13 +26,12 @@ export class MerchController {
   constructor(private readonly merchService: MerchService) {}
 
   @Post()
-  @UseInterceptors(
-    FilesInterceptor('images', 5, { storage: cloudinaryStorage }),
-  )
+  @UseInterceptors(FilesInterceptor('images'))
   async createMerch(
     @Body() createMerchDto: CreateMerchDto,
     @UploadedFiles() files,
   ) {
+    console.log(files);
     if (!files || files.length === 0) {
       throw new BadRequestException('At least one image is required');
     }
@@ -40,6 +39,7 @@ export class MerchController {
     const uploadedImages = await Promise.all(
       files.map((file) => uploadImage(file)),
     );
+    console.log(uploadedImages);
 
     const merch = {
       ...createMerchDto,
