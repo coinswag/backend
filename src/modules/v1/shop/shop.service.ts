@@ -36,7 +36,7 @@ export class ShopService {
       .findOne({
         name,
       })
-      // .populate('merches');
+      .populate('merches');
     return shops;
   }
 

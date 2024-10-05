@@ -35,7 +35,6 @@ export class ShopController {
   @ResponseMessage(RESPONSE_CONSTANT.SHOP.CREATE_SHOP_SUCCESS)
   @Post()
   async create(@Body() createShopDto: CreateShopDto, @UploadedFiles() files) {
-    console.log(ENVIRONMENT.CLOUDINARY.CLOUDINARY_URL);
     const uploadedImages = await Promise.all(
       files.map((file) => uploadImage(file)),
     );

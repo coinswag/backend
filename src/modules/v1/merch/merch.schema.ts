@@ -11,6 +11,9 @@ export class Merch {
   @Prop({ required: true, maxlength: 500 })
   description: string;
 
+  @Prop({ required: true })
+  price: number;
+
   @Prop({ required: true, type: [String], maxlength: 5 })
   images: string[];
 
