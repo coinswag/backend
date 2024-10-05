@@ -7,6 +7,9 @@ import {
   Param,
   Delete,
   UseGuards,
+  UseInterceptors,
+  UploadedFile,
+  UploadedFiles,
 } from '@nestjs/common';
 import { ShopService } from './shop.service';
 import { CreateShopDto } from './dto/create-shop.dto';
@@ -19,16 +22,28 @@ import { Model } from 'mongoose';
 import { ResponseMessage } from 'src/common/decorators/response.decorator';
 import { RESPONSE_CONSTANT } from 'src/common/constants/response.constant';
 import { Public } from 'src/common/decorators/public.decorator';
+import { FilesInterceptor } from '@nestjs/platform-express';
+import { uploadImage } from 'src/common/utils/cloudinary.config';
+import { ENVIRONMENT } from 'src/common/configs/environment';
 
 @Controller('shop')
 @UseGuards(JwtAuthGuard)
 export class ShopController {
   constructor(private readonly shopService: ShopService) {}
 
-  @Post()
+  @UseInterceptors(FilesInterceptor('images'))
   @ResponseMessage(RESPONSE_CONSTANT.SHOP.CREATE_SHOP_SUCCESS)
-  create(@Body() createShopDto: CreateShopDto) {
-    return this.shopService.create(createShopDto);
+  @Post()
+  async create(@Body() createShopDto: CreateShopDto, @UploadedFiles() files) {
+    console.log(ENVIRONMENT.CLOUDINARY.CLOUDINARY_URL);
+    const uploadedImages = await Promise.all(
+      files.map((file) => uploadImage(file)),
+    );
+    const shopData = {
+      ...createShopDto,
+      logo: uploadedImages[0].secure_url,
+    };
+    return await this.shopService.create(shopData);
   }
 
   @ResponseMessage(RESPONSE_CONSTANT.SHOP.GET_ALL_SHOPS_SUCCESS)

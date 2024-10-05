@@ -19,6 +19,9 @@ export class Shop {
   @Prop({ required: true, unique: true })
   url: string;
 
+  @Prop({ required: true, unique: true })
+  logo: string;
+
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   owner: User;
 
