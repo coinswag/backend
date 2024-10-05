@@ -5,10 +5,6 @@ import { ENVIRONMENT } from '../configs/environment';
 console.log(ENVIRONMENT.CLOUDINARY.CLOUDINARY_URL);
 
 try {
-  console.log(
-    'Configuring Cloudinary with URL:',
-    ENVIRONMENT.CLOUDINARY.CLOUDINARY_URL,
-  );
   const cloudinaryConfig = cloudinary.config({
     cloud_name: ENVIRONMENT.CLOUDINARY.CLOUD_NAME,
     api_key: ENVIRONMENT.CLOUDINARY.API_KEY,
