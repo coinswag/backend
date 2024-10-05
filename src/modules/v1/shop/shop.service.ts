@@ -14,7 +14,10 @@ export class ShopService {
   ) {}
 
   async create(createShopDto: CreateShopDto) {
-    const newShop = await this.shopModel.create(createShopDto);
+    const newShop = await this.shopModel.create({
+      ...createShopDto,
+      name: createShopDto.name.toLowerCase(),
+    });
     await this.userModel.findByIdAndUpdate(createShopDto.owner, {
       $push: { shops: newShop.id },
     });

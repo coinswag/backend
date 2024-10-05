@@ -6,11 +6,15 @@ export class CreateShopDto {
 
   @IsString()
   @IsNotEmpty()
+  displayName: string;
+
+  @IsString()
+  @IsNotEmpty()
   description: string;
 
   @IsString()
   @IsNotEmpty()
-    url: string
+  url: string;
 
   @IsMongoId()
   @IsNotEmpty()

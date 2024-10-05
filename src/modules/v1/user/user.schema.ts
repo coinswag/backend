@@ -13,7 +13,7 @@ export class User {
   pubKey: string;
 
   @Prop({
-    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Appointment' }],
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Shop' }],
   })
   shops: Shop[];
 }

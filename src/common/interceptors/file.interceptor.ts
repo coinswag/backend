@@ -35,7 +35,7 @@ export class FileSSEInterceptor implements NestInterceptor {
       limits: {
         fileSize: 10 * 1024 * 1024, // 10 MB limit
       },
-    }).single('file');
+    }).array('file', 5); // Handle multiple files, up to 5
 
     return new Observable((observer) => {
       upload(req, res, (err) => {
