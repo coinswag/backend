@@ -36,4 +36,7 @@ export const RESPONSE_CONSTANT = {
     GET_ALL_SHOPS_SUCCESS: 'All Shops Retrieved Successfully',
     GET_SHOP_SUCCESS: 'Shop Retrieved Successfully',
   },
+  MERCH: {
+    CREATED: 'Merch Created Successfully',
+  },
 };

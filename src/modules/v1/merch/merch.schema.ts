@@ -20,11 +20,11 @@ export class Merch {
   @Prop({ required: true })
   merchandiseType: string;
 
-  @Prop({ type: [{ size: String, stock: Number }], required: true })
+  @Prop({ type: [{ size: String, quantity: Number }], required: true })
   variants: Variant[];
 }
 export interface Variant {
   size: string;
-  stock: number;
+  quantity: number;
 }
 export const MerchSchema = SchemaFactory.createForClass(Merch);

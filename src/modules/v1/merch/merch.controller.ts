@@ -20,13 +20,17 @@ import {
   uploadImage,
 } from 'src/common/utils/cloudinary.config';
 import { LoggedInUserDecorator } from 'src/common/decorators/logged_in_user.decorator';
+import { ResponseMessage } from 'src/common/decorators/response.decorator';
+import { ENVIRONMENT } from 'src/common/configs/environment';
+import { RESPONSE_CONSTANT } from 'src/common/constants/response.constant';
 
 @Controller('merch')
 export class MerchController {
   constructor(private readonly merchService: MerchService) {}
 
-  @Post()
   @UseInterceptors(FilesInterceptor('images'))
+  @ResponseMessage(RESPONSE_CONSTANT.MERCH.CREATED)
+  @Post()
   async createMerch(
     @Body() createMerchDto: CreateMerchDto,
     @UploadedFiles() files,

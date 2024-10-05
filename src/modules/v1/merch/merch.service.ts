@@ -17,6 +17,7 @@ export class MerchService {
       createMerchDto.sizes.trim().split(','),
       createMerchDto.quantities.trim().split(',').map(Number),
     );
+    console.log(variants);
     const merchData = {
       ...createMerchDto,
       price: Number(createMerchDto.price),
