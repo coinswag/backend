@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateMerchDto } from './dto/create-merch.dto';
 import { UpdateMerchDto } from './dto/update-merch.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -17,7 +17,6 @@ export class MerchService {
       createMerchDto.sizes.trim().split(','),
       createMerchDto.quantities.trim().split(',').map(Number),
     );
-    console.log(variants);
     const merchData = {
       ...createMerchDto,
       price: Number(createMerchDto.price),
@@ -25,9 +24,15 @@ export class MerchService {
       variants,
     };
     const newMerch = await this.merchModel.create(merchData);
-    await this.shopModel.findByIdAndUpdate(createMerchDto.shopId, {
-      $push: { merch: newMerch._id },
-    });
+    const updatedShop = await this.shopModel.findByIdAndUpdate(
+      createMerchDto.shopId,
+      {
+        $push: { merches: newMerch._id },
+      },
+    );
+    if (!updatedShop) {
+      throw new BadRequestException('Error Updating Shop');
+    }
     return newMerch;
   }
   matchSizeAndQuantity(

@@ -25,16 +25,19 @@ export class ShopService {
   }
 
   async findAll(userId: string) {
-    return await this.shopModel.findById(userId);
+    return (await this.shopModel.findById(userId)).populate('shops');
   }
 
   async findOne(id: string) {
     return await this.shopModel.findById(id);
   }
   async findOneByName(name: string) {
-    return await this.shopModel.findOne({
-      name,
-    });
+    const shops = this.shopModel
+      .findOne({
+        name,
+      })
+      // .populate('merches');
+    return shops;
   }
 
   async update(id: string, updateShopDto: UpdateShopDto) {
