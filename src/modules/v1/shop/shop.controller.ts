@@ -10,6 +10,7 @@ import {
   UseInterceptors,
   UploadedFile,
   UploadedFiles,
+  Query,
 } from '@nestjs/common';
 import { ShopService } from './shop.service';
 import { CreateShopDto } from './dto/create-shop.dto';
@@ -53,7 +54,7 @@ export class ShopController {
   @Public()
   @ResponseMessage(RESPONSE_CONSTANT.SHOP.GET_ALL_SHOPS_SUCCESS)
   @Get('/name')
-  findOneByName(@Body('name') name: string) {
+  findOneByName(@Query('name') name: string) {
     return this.shopService.findOneByName(name);
   }
 
