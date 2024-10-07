@@ -92,10 +92,6 @@ export class CreateOrderDto {
   @IsNotEmpty()
   shopId: string;
 
-  @IsNumber()
-  @IsNotEmpty()
-  totalAmount: number;
-
   @IsString()
   @IsNotEmpty()
   txHash: string;

@@ -29,7 +29,7 @@ export class OrderService {
         throw new BadRequestException('Shop not found');
       }
 
-      const newCart = await this.cartModel.create(cart);
+      const newCart = await this.cartModel.create({ items: cart });
 
       const orderId = `ORD-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
       const status = 'pending';
@@ -48,10 +48,11 @@ export class OrderService {
         customer: newCustomer._id,
         shippingInfo,
         priceBreakdown,
-        cart,
+        cart: newCart._id,
         orderDate,
         shop: shopId,
       });
+      console.log(createdOrder);
 
       await this.customerModel.findByIdAndUpdate(newCustomer._id, {
         $push: { orders: createdOrder._id },
@@ -63,6 +64,7 @@ export class OrderService {
 
       return createdOrder;
     } catch (error) {
+      console.log(error);
       if (error.code === 11000) {
         throw new ConflictException('Order already exists');
       }

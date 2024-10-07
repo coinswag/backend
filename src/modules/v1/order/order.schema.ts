@@ -12,12 +12,6 @@ export class Order {
   orderId: string;
 
   @Prop({ required: true })
-  totalAmount: number;
-
-  @Prop({ required: true, unique: true })
-  tokenId: string;
-
-  @Prop({ required: true })
   status: string;
 
   @Prop({ default: 'USD' })
@@ -64,7 +58,7 @@ export class Order {
   orderDate: Date;
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Store', required: true })
-  store: Shop;
+  shop: Shop;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

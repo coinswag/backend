@@ -51,4 +51,11 @@ export const RESPONSE_CONSTANT = {
     DELETE_CART_SUCCESS: 'Cart Deleted Successfully',
     GET_ALL_CART_ITEMS_SUCCESS: 'All Cart Items Retrieved Successfully',
   },
+  ORDER: {
+    CREATED: 'Order Created Successfully',
+    GET_ORDER_SUCCESS: 'Order Retrieved Successfully',
+    GET_ALL_ORDERS_SUCCESS: 'All Orders Retrieved Successfully',
+    UPDATE_ORDER_SUCCESS: 'Order Updated Successfully',
+    DELETE_ORDER_SUCCESS: 'Order Deleted Successfully',
+  },
 };

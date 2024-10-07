@@ -15,6 +15,8 @@ import { CreateOrderDto } from './dto/order.dto';
 import { OrderService } from './order.service';
 import { OrderDocument } from './order.schema';
 import { Public } from 'src/common/decorators/public.decorator';
+import { ResponseMessage } from 'src/common/decorators/response.decorator';
+import { RESPONSE_CONSTANT } from 'src/common/constants/response.constant';
 
 @Controller('order')
 export class OrderController {
@@ -22,6 +24,7 @@ export class OrderController {
 
   @Post()
   @Public()
+  @ResponseMessage(RESPONSE_CONSTANT.ORDER.CREATED)
   create(@Body() payload: CreateOrderDto): Promise<OrderDocument> {
     return this.orderService.create(payload);
   }
