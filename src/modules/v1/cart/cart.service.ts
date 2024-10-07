@@ -7,14 +7,12 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Cart, CartDocument } from './cart.schema';
 import { CreateCartDto, GetCartDto, UpdateCartDto } from './dto/cart.dto';
-import { User, UserDocument } from '../user/user.schema';
 import { Merch, MerchDocument } from '../merch/merch.schema';
 
 @Injectable()
 export class CartService {
   constructor(
     @InjectModel(Cart.name) private cartModel: Model<CartDocument>,
-    @InjectModel(User.name) private userModel: Model<UserDocument>,
     @InjectModel(Merch.name) private merchModel: Model<MerchDocument>,
   ) {}
 
@@ -56,7 +54,7 @@ export class CartService {
   async update(id: string, payload: UpdateCartDto): Promise<Cart> {
     return await this.cartModel.findByIdAndUpdate(
       id,
-      { $Push: { merchs: payload } },
+      { $push: { merchs: payload } },
       {
         new: true,
       },

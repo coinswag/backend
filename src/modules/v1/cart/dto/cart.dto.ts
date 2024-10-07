@@ -14,17 +14,10 @@ export interface Item {
   quantity: number;
 }
 export class CreateCartDto {
-  @IsString()
-  @IsNotEmpty()
-  walletAddress: string;
 
-  @IsString()
-  @IsMongoId()
-  @IsNotEmpty()
-  store: string;
 
   @IsArray()
-  // @ValidateNested({ each: true })
+  @ValidateNested({ each: true })
   @IsNotEmpty()
   items: Item[];
 }

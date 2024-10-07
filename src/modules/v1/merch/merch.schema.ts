@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 
 export type MerchDocument = Merch & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Merch {
   @Prop({ required: true })
   name: string;
@@ -19,6 +19,9 @@ export class Merch {
 
   @Prop({ required: true, type: [String], maxlength: 5 })
   colors: string[];
+
+  @Prop({ required: true, default: 0 })
+  sold: number;
 
   @Prop({ required: true })
   merchandiseType: string;

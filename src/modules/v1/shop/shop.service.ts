@@ -39,7 +39,26 @@ export class ShopService {
       .populate('merches');
     return shops;
   }
+  async getAllMerches(id: string) {
+    return await (
+      await this.shopModel.findById(id).populate('merches').select('merches')
+    ).merches;
+  }
 
+  async getAllCustomers(id: string) {
+    return await (
+      await this.shopModel
+        .findById(id)
+        .populate('customers')
+        .select('customers')
+    ).customers;
+  }
+
+  async getAllOrders(id: string) {
+    return await (
+      await this.shopModel.findById(id).populate('orders').select('orders')
+    ).orders;
+  }
   async update(id: string, updateShopDto: UpdateShopDto) {
     return await this.shopModel.findByIdAndUpdate(id, updateShopDto, {
       new: true,

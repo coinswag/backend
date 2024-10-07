@@ -21,19 +21,15 @@ export class OrderService {
   ) {}
 
   async create(payload: CreateOrderDto): Promise<OrderDocument> {
-    const {
-      shopId,
-      totalAmount,
-      customer,
-      shippingInfo,
-      priceBreakdown,
-      cart,
-    } = payload;
+    const { shopId, customer, shippingInfo, priceBreakdown, cart } = payload;
 
     try {
       const shop = await this.shopModel.findById(shopId);
+      if (!shop) {
+        throw new BadRequestException('Shop not found');
+      }
 
-      if (!shop) throw new BadRequestException('shop not found');
+      const newCart = await this.cartModel.create(cart);
 
       const orderId = `ORD-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
       const status = 'pending';
@@ -47,15 +43,18 @@ export class OrderService {
       // Calculate the total amount of the cart items
       const createdOrder = await this.orderModel.create({
         orderId,
-        totalAmount,
         status,
-        currency: 'SOL', // Default currency
+        currency: 'USD', // Default currency
         customer: newCustomer._id,
         shippingInfo,
         priceBreakdown,
         cart,
         orderDate,
         shop: shopId,
+      });
+
+      await this.customerModel.findByIdAndUpdate(newCustomer._id, {
+        $push: { orders: createdOrder._id },
       });
 
       await this.shopModel.findByIdAndUpdate(shop.id, {
@@ -69,7 +68,6 @@ export class OrderService {
       }
     }
   }
-
   async findAll(): Promise<OrderDocument[]> {
     return await this.orderModel.find();
   }

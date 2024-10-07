@@ -59,6 +59,25 @@ export class ShopController {
   }
 
   @Public()
+  @ResponseMessage(RESPONSE_CONSTANT.SHOP.GET_SHOP_MERCHES_SUCCESS)
+  @Get('/:id/merches')
+  getAllMerches(@Param('id') id: string) {
+    return this.shopService.getAllMerches(id);
+  }
+  @Public()
+  @ResponseMessage(RESPONSE_CONSTANT.SHOP.GET_SHOP_CUSTOMERS_SUCCESS)
+  @Get('/:id/customers')
+  getAllCustomers(@Param('id') id: string) {
+    return this.shopService.getAllCustomers(id);
+  }
+  @Public()
+  @ResponseMessage(RESPONSE_CONSTANT.SHOP.GET_SHOP_ORDERS_SUCCESS)
+  @Get('/:id/orders')
+  getAllOrders(@Param('id') id: string) {
+    return this.shopService.getAllOrders(id);
+  }
+
+  @Public()
   @ResponseMessage(RESPONSE_CONSTANT.SHOP.GET_SHOP_SUCCESS)
   @Get('/:id')
   findOne(@Param('id') id: string) {

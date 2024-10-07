@@ -1,26 +1,21 @@
 import { Prop, Schema, SchemaFactory, raw } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
-import { Shop } from '../shop/shop.schema';
-import { Cart } from '../cart/cart.schema';
 
 export type CustomerDocument = Customer & Document;
 
-@Schema({ timestamps: true })
+@Schema()
 export class Customer {
-  @Prop({ type: String })
-  customerId: string;
-
-  @Prop({ type: String })
-  firstName: string;
-
-  @Prop({ type: String })
-  lastName: string;
-
-  @Prop({ type: String })
+  @Prop({ required: true })
   email: string;
 
-  @Prop({ type: String })
-  phone: string;
+  @Prop({ required: true })
+  firstName: string;
+
+  @Prop({ required: true })
+  lastName: string;
+
+  @Prop({ required: true })
+  walletAddress: string;
 }
 
 export const CustomerSchema = SchemaFactory.createForClass(Customer);

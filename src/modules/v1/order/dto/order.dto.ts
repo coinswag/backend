@@ -72,10 +72,6 @@ export class ShippingInfoDto {
 export class CustomerDto {
   @IsString()
   @IsNotEmpty()
-  customerId: string;
-
-  @IsString()
-  @IsNotEmpty()
   firstName: string;
 
   @IsString()
@@ -88,17 +84,7 @@ export class CustomerDto {
 
   @IsString()
   @IsNotEmpty()
-  phone: string;
-}
-
-class ProductOrderDto {
-  @IsMongoId()
-  @IsNotEmpty()
-  productId: string;
-
-  @IsNumber()
-  @IsNotEmpty()
-  quantity: number;
+  walletAddress: string;
 }
 
 export class CreateOrderDto {
@@ -112,8 +98,7 @@ export class CreateOrderDto {
 
   @IsString()
   @IsNotEmpty()
-  tokenId: string;
-
+  txHash: string;
 
   @ValidateNested()
   @Type(() => CustomerDto)
@@ -130,11 +115,21 @@ export class CreateOrderDto {
   @IsNotEmpty()
   priceBreakdown: PriceBreakdownDto;
 
-  @IsMongoId()
   @IsNotEmpty()
-  cart: string;
+  @IsArray()
+  cart: ItemDto[];
+}
 
-  @IsMongoId()
+export class ItemDto {
+  @IsString()
   @IsNotEmpty()
-  store: string;
+  merch: string;
+
+  @IsString()
+  @IsNotEmpty()
+  size: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  quantity: number;
 }

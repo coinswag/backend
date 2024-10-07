@@ -30,7 +30,7 @@ export class CartController {
   findAllProducts(@Param() payload: GetCartDto) {
     // return this.cartService.getAllProducts(payload);
   }
-  
+
   @Get('/find')
   @ResponseMessage(RESPONSE_CONSTANT.CART.GET_CART_SUCCESS)
   findOneByWalletAddress(@Query('walletAddress') walletAddress: string) {
@@ -43,11 +43,10 @@ export class CartController {
     return this.cartService.getCartById(payload);
   }
 
-
-  @Get(':id/products')
+  @Get(':id/merches')
   @ResponseMessage(RESPONSE_CONSTANT.CART.GET_ALL_CART_ITEMS_SUCCESS)
   getAllProducts(@Param() payload: GetCartDto) {
-    // return this.cartService.getAllProducts(payload);
+    return this.cartService.getAllmerchs(payload);
   }
 
   @Put(':id')

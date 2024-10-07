@@ -7,6 +7,8 @@ import { ENVIRONMENT } from './common/configs/environment';
 import { AuthModule } from './modules/v1/auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MerchModule } from './modules/v1/merch/merch.module';
+import { CartModule } from './modules/v1/cart/cart.module';
+import { OrderModule } from './modules/v1/order/order.module';
 
 @Module({
   imports: [
@@ -15,6 +17,8 @@ import { MerchModule } from './modules/v1/merch/merch.module';
     UserModule,
     ShopModule,
     MerchModule,
+    CartModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],

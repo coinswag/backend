@@ -2,6 +2,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
 import { User } from '../user/user.schema';
 import { Merch } from '../merch/merch.schema';
+import { Order } from '../order/order.schema';
+import { Customer } from '../customer/customer.schema';
 
 export type ShopDocument = Shop & Document;
 
@@ -25,10 +27,23 @@ export class Shop {
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   owner: User;
 
+  @Prop()
+  payoutAddress: string;
+
   @Prop({
     type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Merch' }],
   })
   merches: Merch[];
+
+  @Prop({
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Customer' }],
+  })
+  customers: Customer[];
+
+  @Prop({
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }],
+  })
+  orders: Order[];
 }
 
 export const ShopSchema = SchemaFactory.createForClass(Shop);

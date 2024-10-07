@@ -35,16 +35,14 @@ export const RESPONSE_CONSTANT = {
     CREATE_SHOP_SUCCESS: 'Shop Created Successfully',
     GET_ALL_SHOPS_SUCCESS: 'All Shops Retrieved Successfully',
     GET_SHOP_SUCCESS: 'Shop Retrieved Successfully',
+    GET_SHOP_MERCHES_SUCCESS: 'Shop Merches Retrieved Successfully',
+    GET_SHOP_CUSTOMERS_SUCCESS: 'Shop Customers Retrieved Successfully',
+    GET_SHOP_ORDERS_SUCCESS: 'Shop Orders Retrieved Successfully',
+    UPDATE_SHOP_SUCCESS: 'Shop Updated Successfully',
+    DELETE_SHOP_SUCCESS: 'Shop Deleted Successfully',
   },
   MERCH: {
     CREATED: 'Merch Created Successfully',
-  },
-  STORE: {
-    CREATE_STORE_SUCCESS: 'Store Created Successfully',
-    GET_ALL_PRODUCTS_SUCCESS: 'All Products Retrieved Successfully',
-    GET_STORE_SUCCESS: 'Store Retrieved Successfully',
-    UPDATE_STORE_SUCCESS: 'Store Updated Successfully',
-    DELETE_STORE_SUCCESS: 'Store Deleted Successfully',
   },
   CART: {
     CREATE_CART_SUCCESS: 'Cart Created Successfully',
