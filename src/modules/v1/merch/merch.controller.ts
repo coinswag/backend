@@ -10,6 +10,7 @@ import {
   UploadedFile,
   UploadedFiles,
   BadRequestException,
+  Query,
 } from '@nestjs/common';
 import { MerchService } from './merch.service';
 import { CreateMerchDto } from './dto/create-merch.dto';
@@ -58,7 +59,7 @@ export class MerchController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Query('id') id: string) {
     return this.merchService.findOne(id);
   }
 
