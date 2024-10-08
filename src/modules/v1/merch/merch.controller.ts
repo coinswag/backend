@@ -54,10 +54,10 @@ export class MerchController {
     return await this.merchService.create(merch);
   }
 
-  @Get()
-  findAll() {
-    return this.merchService.findAll();
-  }
+  // @Get()
+  // findAll() {
+  //   return this.merchService.findAll();
+  // }
 
   @Public()
   @Get(':id')
