@@ -24,8 +24,7 @@ import { LoggedInUserDecorator } from 'src/common/decorators/logged_in_user.deco
 import { ResponseMessage } from 'src/common/decorators/response.decorator';
 import { ENVIRONMENT } from 'src/common/configs/environment';
 import { RESPONSE_CONSTANT } from 'src/common/constants/response.constant';
-import { Public } from 'src/common/decorators/public.decorator';
-@Public()
+import { Public } from 'src/common/decorators/public.decorator'
 @Controller('merch')
 export class MerchController {
   constructor(private readonly merchService: MerchService) {}
@@ -60,7 +59,7 @@ export class MerchController {
   // }
 
   @Public()
-  @Get('')
+  @Get('/')
   @ResponseMessage(RESPONSE_CONSTANT.SHOP.GET_SHOP_MERCHES_SUCCESS)
   findOne(@Query('id') id: string) {
     return this.merchService.findOne(id);
