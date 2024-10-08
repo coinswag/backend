@@ -60,7 +60,7 @@ export class MerchController {
   // }
 
   @Public()
-  @Get(':id')
+  @Get('')
   @ResponseMessage(RESPONSE_CONSTANT.SHOP.GET_SHOP_MERCHES_SUCCESS)
   findOne(@Query('id') id: string) {
     return this.merchService.findOne(id);
